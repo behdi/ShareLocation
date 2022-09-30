@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ShareLocationPageRoutingModule } from './share-location-page-routing.module';
 import { ShareLocationPageComponent } from './share-location-page.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ShareLocationPageComponent } from './share-location-page.component';
   ],
   imports: [
     CommonModule,
-    ShareLocationPageRoutingModule
+    ShareLocationPageRoutingModule,
+    SharedModule
   ]
 })
 export class ShareLocationPageModule { }
