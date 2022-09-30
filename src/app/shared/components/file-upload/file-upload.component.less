@@ -1,0 +1,34 @@
+:host {
+  width: 100%;
+}
+
+#file-upload {
+  display: none;
+}
+
+.container {
+  transition: all 0.3s;
+
+  &:hover,
+  &:active {
+    cursor: pointer;
+    filter: brightness(70%);
+  }
+}
+
+[card-header] {
+  text-align: center;
+}
+
+[card-body] {
+  padding: 1rem;
+  background-color: var(--commune-primary-color-shade);
+
+  .upload-icon {
+    background-color: var(--commune-primary-color);
+    mask-image: url("~src/assets/icons/upload-icon.svg");
+    mask-repeat: no-repeat;
+    mask-position: center;
+    height: 5rem;
+  }
+}
