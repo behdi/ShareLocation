@@ -29,16 +29,53 @@ select {
     box-shadow: 0 0 3px 5px var(--commune-primary-color-shade);
     border-color: var(--commune-primary-color);
   }
-
-  &.invalid {
-    border-color: var(--commune-error-color);
-
-    &:focus {
-      box-shadow: 0 0 3px 3px var(--commune-error-color-shade);
-    }
-  }
 }
 
 select {
   background-color: transparent;
+}
+
+.invalid {
+  border: 1px solid var(--commune-error-color);
+  border-color: var(--commune-error-color);
+
+  &:focus {
+    box-shadow: 0 0 3px 3px var(--commune-error-color-shade);
+  }
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  outline: none;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  border-color: transparent;
+  transition: all 0.3s;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &:active {
+    transform: translateY(0.1rem);
+    box-shadow: 0 1px 1px 1px var(--commune-grey-color);
+  }
+
+  &.btn-primary {
+    background-color: var(--commune-primary-color);
+    color: white;
+
+    &:hover {
+      background-color: var(--commune-primary-color-hover);
+    }
+  }
+
+  &.btn-grey {
+    background-color: var(--commune-grey-color);
+    color: white;
+
+    &:hover {
+      background-color: var(--commune-grey-color-hover);
+    }
+  }
 }

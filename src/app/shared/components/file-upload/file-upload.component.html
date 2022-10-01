@@ -7,7 +7,7 @@
   </app-card>
 </label>
 <input
-  [formControlName]="formControlName"
+  (change)="onFileChange($event)"
   type="file"
   name="file-upload"
   id="file-upload"

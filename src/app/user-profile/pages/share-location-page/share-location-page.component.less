@@ -24,14 +24,24 @@ app-card {
   .form-label {
     text-align: right;
     width: 30%;
-
-    &.align-top {
-      align-self: flex-start;
-    }
+    align-self: flex-start;
   }
 
   .form-input {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 70%;
   }
+}
+
+.map {
+  height: 12rem;
+}
+
+.action-buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 0.5rem;
+  margin-top: 2rem;
 }
