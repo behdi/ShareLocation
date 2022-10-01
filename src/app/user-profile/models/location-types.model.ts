@@ -12,7 +12,7 @@ export const availableLocationTypes = [
   { value: LocationType.Library, name: 'Library' },
   { value: LocationType.School, name: 'School' },
   { value: LocationType.University, name: 'University' },
-  { value: LocationType.Cafe, name: 'cafe' },
+  { value: LocationType.Cafe, name: 'Cafe' },
   {
     value: LocationType.Resturant,
     name: 'Resturant',

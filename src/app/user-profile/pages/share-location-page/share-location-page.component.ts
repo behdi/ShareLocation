@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { availableLocationTypes } from '../../models/location-types.model';
 import { ShareLocationForm } from '../../models/share-location-form.model';
 import { UserLocation } from '../../models/user-location.model';
 import { LocationStorageService } from '../../services/location-storage.service';
+import { ToastrService } from 'ngx-toastr';
+import { MapComponent } from 'src/app/shared/components/map/map.component';
 
 @Component({
   selector: 'app-share-location-page',
@@ -11,10 +13,14 @@ import { LocationStorageService } from '../../services/location-storage.service'
   styleUrls: ['./share-location-page.component.less'],
 })
 export class ShareLocationPageComponent implements OnInit {
+  @ViewChild(MapComponent) mapComponent!: MapComponent;
   locationForm: FormGroup<ShareLocationForm>;
   locationFormControls: ShareLocationForm;
 
-  constructor(private locationStorage: LocationStorageService) {
+  constructor(
+    private locationStorage: LocationStorageService,
+    private toastr: ToastrService
+  ) {
     this.locationForm = new FormGroup<ShareLocationForm>({
       name: new FormControl(null, [
         Validators.required,
@@ -45,6 +51,8 @@ export class ShareLocationPageComponent implements OnInit {
     };
 
     this.locationStorage.saveLocation(values);
+    this.resetForm();
+    this.toastr.success('Location saved successfully');
   }
 
   getSelectedPosition(selectedPosition: google.maps.LatLngLiteral) {
@@ -55,12 +63,9 @@ export class ShareLocationPageComponent implements OnInit {
     return ctrl.touched && ctrl.errors;
   }
 
-  formHasErrors() {
-    return (
-      this.locationFormControls.coordinates.dirty &&
-      this.locationFormControls.logo.dirty &&
-      this.locationForm.errors
-    );
+  resetForm() {
+    this.locationForm.reset();
+    this.mapComponent.clearMarker();
   }
 
   get availableLocationTypes() {

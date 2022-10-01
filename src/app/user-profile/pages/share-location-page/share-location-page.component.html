@@ -1,4 +1,8 @@
-<form [formGroup]="locationForm" (ngSubmit)="onFormSubmit()">
+<form
+  [formGroup]="locationForm"
+  (ngSubmit)="onFormSubmit()"
+  (reset)="resetForm()"
+>
   <app-card>
     <h1 card-header>Share Location</h1>
 

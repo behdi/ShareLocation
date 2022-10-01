@@ -54,4 +54,8 @@ export class MapComponent implements OnInit {
   openInfo(marker: MapMarker) {
     this.infoWindow.open(marker);
   }
+
+  clearMarker() {
+    this.markerPosition = undefined;
+  }
 }
