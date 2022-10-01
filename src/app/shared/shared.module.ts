@@ -5,10 +5,11 @@ import { FileUploadComponent } from './components/file-upload/file-upload.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { MapComponent } from './components/map/map.component';
+import { FormInputErrorsComponent } from './components/form-input-errors/form-input-errors.component';
 
 @NgModule({
-  declarations: [CardComponent, FileUploadComponent, MapComponent],
+  declarations: [CardComponent, FileUploadComponent, MapComponent, FormInputErrorsComponent],
   imports: [CommonModule, ReactiveFormsModule, GoogleMapsModule],
-  exports: [CardComponent, FileUploadComponent, MapComponent],
+  exports: [CardComponent, FileUploadComponent, MapComponent, FormInputErrorsComponent],
 })
 export class SharedModule {}

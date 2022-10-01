@@ -1,0 +1,15 @@
+<ng-container *ngIf="ctrl.touched && ctrl.hasError">
+  <p class="error-text" *ngIf="ctrl?.getError('required')">
+    This field is required.
+  </p>
+  <p class="error-text" *ngIf="ctrl?.getError('minlength')">
+    Value must be at least
+    {{ ctrl.getError("minlength")?.requiredLength }}
+    characters long.
+  </p>
+  <p class="error-text" *ngIf="ctrl?.getError('maxlength')">
+    Value can't have more than
+    {{ ctrl.getError("maxlength")?.requiredLength }}
+    characters.
+  </p>
+</ng-container>

@@ -29,18 +29,19 @@ select {
     box-shadow: 0 0 3px 5px var(--commune-primary-color-shade);
     border-color: var(--commune-primary-color);
   }
-
-  &.invalid {
-    border-color: var(--commune-error-color);
-
-    &:focus {
-      box-shadow: 0 0 3px 3px var(--commune-error-color-shade);
-    }
-  }
 }
 
 select {
   background-color: transparent;
+}
+
+.invalid {
+  border: 1px solid var(--commune-error-color);
+  border-color: var(--commune-error-color);
+
+  &:focus {
+    box-shadow: 0 0 3px 3px var(--commune-error-color-shade);
+  }
 }
 
 .btn {

@@ -16,7 +16,11 @@ export class ShareLocationPageComponent implements OnInit {
 
   constructor(private locationStorage: LocationStorageService) {
     this.locationForm = new FormGroup<ShareLocationForm>({
-      name: new FormControl(null, [Validators.required]),
+      name: new FormControl(null, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(10),
+      ]),
       coordinates: new FormControl(null, [Validators.required]),
       type: new FormControl(null, [Validators.required]),
       logo: new FormControl(null, [Validators.required]),
