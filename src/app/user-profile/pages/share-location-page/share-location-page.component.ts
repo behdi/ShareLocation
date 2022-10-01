@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
+import { LocationType } from '../../models/location-types.model';
 
 @Component({
   selector: 'app-share-location-page',
@@ -7,7 +14,16 @@ import { Router } from '@angular/router';
   styleUrls: ['./share-location-page.component.less'],
 })
 export class ShareLocationPageComponent implements OnInit {
-  constructor(private router: Router) {}
+  locationForm: FormGroup;
+
+  constructor() {
+    this.locationForm = new FormGroup({
+      name: new FormControl<string | null>(null),
+      coordinates: new FormControl<google.maps.LatLngLiteral | null>(null),
+      type: new FormControl<LocationType | null>(null),
+      logo: new FormControl(null),
+    });
+  }
 
   ngOnInit(): void {}
 
@@ -15,5 +31,6 @@ export class ShareLocationPageComponent implements OnInit {
 
   getSelectedPosition(selectedPosition: google.maps.LatLngLiteral) {
     console.log(selectedPosition);
+    this.locationForm.get('coordinates')?.setValue(selectedPosition);
   }
 }

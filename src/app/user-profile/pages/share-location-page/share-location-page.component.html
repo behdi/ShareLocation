@@ -1,37 +1,44 @@
 <app-card>
   <h1 card-header>Share Location</h1>
   <section card-body>
-    <div class="form-group">
-      <label class="form-label" for="location-name">Location name:</label>
-      <input
-        class="form-input"
-        type="text"
-        name="location-name"
-        id="location-name"
-      />
-    </div>
-    <div class="form-group">
-      <label class="form-label align-top" for="location-map"
-        >Location on map:</label
-      >
-      <div class="form-input map">
-        <app-map (mapClick)="onMapClick()" (selectedPosition)="getSelectedPosition($event)"></app-map>
+    <form [formGroup]="locationForm">
+      <div class="form-group">
+        <label class="form-label" for="location-name">Location name:</label>
+        <input
+        formControlName="name"
+          class="form-input"
+          type="text"
+          name="location-name"
+          id="location-name"
+        />
       </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label" for="location-type">Location type:</label>
-      <select class="form-input" name="location-type" id="location-type">
-        <option value="business">Business</option>
-        <option value="library">Library</option>
-        <option value="school">School</option>
-        <option value="uni">University</option>
-        <option value="cafe">Cafe</option>
-        <option value="resturant">Resturant</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="form-label align-top" for="logo">Logo:</label>
-      <app-file-upload class="form-input"></app-file-upload>
-    </div>
+      <div class="form-group">
+        <label class="form-label align-top" for="location-map"
+          >Location on map:</label
+        >
+        <div class="form-input map">
+          <app-map
+            (mapClick)="onMapClick()"
+            (selectedPosition)="getSelectedPosition($event)"
+          ></app-map>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label" for="location-type">Location type:</label>
+        <select class="form-input" name="location-type" id="location-type" formControlName="type">
+          <option value="business">Business</option>
+          <option value="library">Library</option>
+          <option value="school">School</option>
+          <option value="uni">University</option>
+          <option value="cafe">Cafe</option>
+          <option value="resturant">Resturant</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label align-top" for="logo">Logo:</label>
+        <app-file-upload class="form-input" controlName="logo"></app-file-upload>
+      </div>
+    </form>
+    {{locationForm.value | json}}
   </section>
 </app-card>
