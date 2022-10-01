@@ -5,8 +5,8 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
 import { LocationType } from '../../models/location-types.model';
+import { ShareLocationForm } from '../../models/share-location-form.model';
 
 @Component({
   selector: 'app-share-location-page',
@@ -17,10 +17,10 @@ export class ShareLocationPageComponent implements OnInit {
   locationForm: FormGroup;
 
   constructor() {
-    this.locationForm = new FormGroup({
-      name: new FormControl<string | null>(null),
-      coordinates: new FormControl<google.maps.LatLngLiteral | null>(null),
-      type: new FormControl<LocationType | null>(null),
+    this.locationForm = new FormGroup<ShareLocationForm>({
+      name: new FormControl(null),
+      coordinates: new FormControl(null),
+      type: new FormControl(null),
       logo: new FormControl(null),
     });
   }
