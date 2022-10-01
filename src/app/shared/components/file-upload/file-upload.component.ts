@@ -15,6 +15,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class FileUploadComponent implements OnInit, ControlValueAccessor {
   @Input() controlName!: string;
+  fileName = '';
   onChange: any = (currentFile: string | null) => {};
   onTouch: any = () => {};
   uploadedFile: string | null = null;
@@ -35,13 +36,14 @@ export class FileUploadComponent implements OnInit, ControlValueAccessor {
     reader.onload = () => {
       this.uploadedFile = reader.result as string;
       this.onChange(this.uploadedFile);
-      console.log(this.uploadedFile);
+      this.fileName = file ? file[0].name : '';
     };
   }
 
   writeValue(currentFile: string): void {
     this.uploadedFile = currentFile;
     this.onChange(currentFile);
+    this.fileName = '';
   }
 
   registerOnChange(fn: any): void {
