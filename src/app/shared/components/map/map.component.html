@@ -1,7 +1,17 @@
 <google-map
-  height="25rem"
+  height="100%"
   width="100%"
   [center]="center"
   [zoom]="zoom"
   [options]="options"
-></google-map>
+  (mapClick)="onMapClick($event)"
+  (mapDblclick)="onMapDblClick($event)"
+>
+  <map-marker
+    #markerElem="mapMarker"
+    *ngIf="markerPosition"
+    [position]="markerPosition"
+    (mapClick)="openInfo(markerElem)"
+  ></map-marker>
+  <map-info-window>Your selected position</map-info-window>
+</google-map>
