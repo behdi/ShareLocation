@@ -1,8 +1,8 @@
 import { LocationType } from './location-types.model';
 
 export interface UserLocation {
-  locationName: string;
-  locationOnMap: google.maps.LatLngLiteral;
-  locationType: LocationType;
+  name: string;
+  coordinates: google.maps.LatLngLiteral;
+  type: LocationType;
   logo: string;
 }

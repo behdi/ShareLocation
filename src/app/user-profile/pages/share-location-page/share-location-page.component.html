@@ -1,4 +1,4 @@
-<form [formGroup]="locationForm">
+<form [formGroup]="locationForm" (ngSubmit)="onFormSubmit()">
   <app-card>
     <h1 card-header>Share Location</h1>
     <section card-body>
@@ -18,7 +18,6 @@
         >
         <div class="form-input map">
           <app-map
-            (mapClick)="onMapClick()"
             (selectedPosition)="getSelectedPosition($event)"
           ></app-map>
         </div>

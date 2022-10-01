@@ -25,7 +25,20 @@ export class ShareLocationPageComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onMapClick() {}
+  onFormSubmit() {
+    if (this.locationForm.invalid) {
+      this.locationForm.markAllAsTouched();
+      return;
+    }
+
+    const values = {
+      name: this.locationFormControls.name.value,
+      coordinates: this.locationFormControls.coordinates.value,
+      type: this.locationFormControls.type.value,
+      logo: this.locationFormControls.logo.value,
+    };
+    console.log(values);
+  }
 
   getSelectedPosition(selectedPosition: google.maps.LatLngLiteral) {
     this.locationFormControls.coordinates.setValue(selectedPosition);
