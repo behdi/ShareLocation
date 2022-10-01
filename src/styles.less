@@ -16,3 +16,29 @@ body {
   box-sizing: border-box;
   height: 100vh;
 }
+
+input,
+select {
+  padding: 0.5rem;
+  border-radius: 0.4rem;
+  outline: none;
+  border: 1px solid var(--commune-input-border-color);
+  transition: all 0.3s;
+
+  &:focus {
+    box-shadow: 0 0 3px 5px var(--commune-primary-color-shade);
+    border-color: var(--commune-primary-color);
+  }
+
+  &.invalid {
+    border-color: var(--commune-error-color);
+
+    &:focus {
+      box-shadow: 0 0 3px 3px var(--commune-error-color-shade);
+    }
+  }
+}
+
+select {
+  background-color: transparent;
+}
