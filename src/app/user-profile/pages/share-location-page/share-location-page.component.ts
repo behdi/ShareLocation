@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { availableLocationTypes } from '../../models/location-types.model';
 import { ShareLocationForm } from '../../models/share-location-form.model';
+import { UserLocation } from '../../models/user-location.model';
+import { LocationStorageService } from '../../services/location-storage.service';
 
 @Component({
   selector: 'app-share-location-page',
@@ -12,7 +14,7 @@ export class ShareLocationPageComponent implements OnInit {
   locationForm: FormGroup<ShareLocationForm>;
   locationFormControls: ShareLocationForm;
 
-  constructor() {
+  constructor(private locationStorage: LocationStorageService) {
     this.locationForm = new FormGroup<ShareLocationForm>({
       name: new FormControl(null, [Validators.required]),
       coordinates: new FormControl(null, [Validators.required]),
@@ -31,13 +33,14 @@ export class ShareLocationPageComponent implements OnInit {
       return;
     }
 
-    const values = {
-      name: this.locationFormControls.name.value,
-      coordinates: this.locationFormControls.coordinates.value,
-      type: this.locationFormControls.type.value,
-      logo: this.locationFormControls.logo.value,
+    const values: UserLocation = {
+      name: this.locationFormControls.name.value!,
+      coordinates: this.locationFormControls.coordinates.value!,
+      type: this.locationFormControls.type.value!,
+      logo: this.locationFormControls.logo.value!,
     };
-    console.log(values);
+
+    this.locationStorage.saveLocation(values);
   }
 
   getSelectedPosition(selectedPosition: google.maps.LatLngLiteral) {
