@@ -1,11 +1,11 @@
-<app-card>
-  <h1 card-header>Share Location</h1>
-  <section card-body>
-    <form [formGroup]="locationForm">
+<form [formGroup]="locationForm">
+  <app-card>
+    <h1 card-header>Share Location</h1>
+    <section card-body>
       <div class="form-group">
         <label class="form-label" for="location-name">Location name:</label>
         <input
-        formControlName="name"
+          formControlName="name"
           class="form-input"
           type="text"
           name="location-name"
@@ -25,7 +25,12 @@
       </div>
       <div class="form-group">
         <label class="form-label" for="location-type">Location type:</label>
-        <select class="form-input" name="location-type" id="location-type" formControlName="type">
+        <select
+          class="form-input"
+          name="location-type"
+          id="location-type"
+          formControlName="type"
+        >
           <option value="business">Business</option>
           <option value="library">Library</option>
           <option value="school">School</option>
@@ -36,9 +41,16 @@
       </div>
       <div class="form-group">
         <label class="form-label align-top" for="logo">Logo:</label>
-        <app-file-upload class="form-input" formControlName="logo"></app-file-upload>
+        <app-file-upload
+          class="form-input"
+          formControlName="logo"
+        ></app-file-upload>
       </div>
-    </form>
-    {{locationForm.value | json}}
-  </section>
-</app-card>
+      {{ locationForm.value | json }}
+    </section>
+  </app-card>
+  <div class="action-buttons">
+    <button class="btn btn-primary" type="submit">Save</button>
+    <button class="btn btn-grey" type="reset">Cancel</button>
+  </div>
+</form>
