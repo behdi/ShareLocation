@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { LocationType } from '../../models/location-types.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { availableLocationTypes } from '../../models/location-types.model';
 import { ShareLocationForm } from '../../models/share-location-form.model';
 
 @Component({
@@ -14,15 +9,18 @@ import { ShareLocationForm } from '../../models/share-location-form.model';
   styleUrls: ['./share-location-page.component.less'],
 })
 export class ShareLocationPageComponent implements OnInit {
-  locationForm: FormGroup;
+  locationForm: FormGroup<ShareLocationForm>;
+  locationFormControls: ShareLocationForm;
 
   constructor() {
     this.locationForm = new FormGroup<ShareLocationForm>({
-      name: new FormControl(null),
-      coordinates: new FormControl(null),
-      type: new FormControl(null),
-      logo: new FormControl(null),
+      name: new FormControl(null, [Validators.required]),
+      coordinates: new FormControl(null, [Validators.required]),
+      type: new FormControl(null, [Validators.required]),
+      logo: new FormControl(null, [Validators.required]),
     });
+
+    this.locationFormControls = this.locationForm.controls;
   }
 
   ngOnInit(): void {}
@@ -30,7 +28,22 @@ export class ShareLocationPageComponent implements OnInit {
   onMapClick() {}
 
   getSelectedPosition(selectedPosition: google.maps.LatLngLiteral) {
-    console.log(selectedPosition);
-    this.locationForm.get('coordinates')?.setValue(selectedPosition);
+    this.locationFormControls.coordinates.setValue(selectedPosition);
+  }
+
+  ctrlHasError(ctrl: FormControl) {
+    return ctrl.touched && ctrl.errors;
+  }
+
+  formHasErrors() {
+    return (
+      this.locationFormControls.coordinates.dirty &&
+      this.locationFormControls.logo.dirty &&
+      this.locationForm.errors
+    );
+  }
+
+  get availableLocationTypes() {
+    return availableLocationTypes;
   }
 }

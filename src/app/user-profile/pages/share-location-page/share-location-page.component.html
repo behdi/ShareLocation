@@ -23,6 +23,7 @@
           ></app-map>
         </div>
       </div>
+
       <div class="form-group">
         <label class="form-label" for="location-type">Location type:</label>
         <select
@@ -31,14 +32,15 @@
           id="location-type"
           formControlName="type"
         >
-          <option value="business">Business</option>
-          <option value="library">Library</option>
-          <option value="school">School</option>
-          <option value="uni">University</option>
-          <option value="cafe">Cafe</option>
-          <option value="resturant">Resturant</option>
+          <option
+            *ngFor="let locationType of availableLocationTypes"
+            [value]="locationType.value"
+          >
+            {{ locationType.name }}
+          </option>
         </select>
       </div>
+
       <div class="form-group">
         <label class="form-label align-top" for="logo">Logo:</label>
         <app-file-upload
@@ -46,7 +48,6 @@
           formControlName="logo"
         ></app-file-upload>
       </div>
-      {{ locationForm.value | json }}
     </section>
   </app-card>
   <div class="action-buttons">
